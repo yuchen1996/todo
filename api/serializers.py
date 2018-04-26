@@ -12,12 +12,16 @@ class GroupSerializer(serializers.HyperlinkedModelSerializer):
         model = Group
         fields = ('url', 'name')
 
-class TodoSerializer(serializers.Serializer):
+class TodoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Todo
+        fields = ('id', 'target_time', 'title', 'content', 'is_end', 'create_time', 'update_time')
+    '''
     pk = serializers.IntegerField(read_only=True)
     create_time = serializers.DateTimeField()
     update_time = serializers.DateTimeField()
     title = serializers.CharField(required=True)
-    content = serializers.TextField()
+    content = serializers.CharField()
     target_time = serializers.DateTimeField()
     is_end = serializers.BooleanField(default=False)
     def create(self, validated_data):
@@ -28,3 +32,4 @@ class TodoSerializer(serializers.Serializer):
         instance.target_time = validated_data.get('target_time', instance.target_time)
         instance.save()
         return instance
+    '''
