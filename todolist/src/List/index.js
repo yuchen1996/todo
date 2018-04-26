@@ -1,28 +1,24 @@
 import React, { Component } from 'react';
 import ListItem from './listItem';
 import Dialog from './dialog';
+import axios from 'axios';
 import './main.css';
 
 class TodoList extends Component {
 	constructor (props) {
 		super(props);
+		axios.get("http://localhost:8000/todos.json")
+            .then(function (response) {
+                let json = response.data.data;
+                this.state = {
+                	list: json,
+					finished: 0
+				};
+            })
+            .catch(function (error) {
+                console.log(error);
+            })
 
-		this.state = {
-			list: [{
-				id: 0,
-				name: '吃饭',
-				status: 0
-			}, {
-				id: 1,
-				name: '睡觉',
-				status: 0
-			}, {
-				id: 2,
-				name: '打豆豆',
-				status : 0
-			}],
-			finished: 0
-		};
 	}
 
 	addTask (newitem) {

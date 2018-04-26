@@ -9,13 +9,13 @@ class ListItem extends Component {
 	} 
 
 	handleFinished () {
-		var status = this.props.item.status;
+		var status = this.props.item.is_end;
 
-		status = (status === 0 ? 1 : 0);
+		status = (status === 'False' ? 1 : 0);
 
 		var obj = {
 			id: this.props.item.id,
-			name: this.props.item.name,
+			name: this.props.item.target_time + ' ' +this.props.item.title,
 			status: status
 		}
 		
