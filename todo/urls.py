@@ -17,6 +17,7 @@ from django.conf.urls import url, include
 from rest_framework import routers
 from django.contrib import admin
 from api import views
+from views import react
 from rest_framework.urlpatterns import format_suffix_patterns
 
 
@@ -24,6 +25,8 @@ urlpatterns = [
     #url(r'^admin/', admin.site.urls),
     url(r'^todos/$', views.TodoList.as_view()),
     url(r'^todos/(?P<pk>[0-9]+)/$', views.TodoDetail.as_view()),
+    url(r'^$', react),
+    url(r'^(?:.*)/?$', react),
     #url(r'^api-auth/',include('rest_framework.urls', namespace='rest_framework'))
 ]
 

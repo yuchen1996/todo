@@ -7,12 +7,11 @@ import './main.css';
 class TodoList extends Component {
 	constructor (props) {
 		super(props);
-		axios.get("http://localhost:8000/todos.json")
+		axios.get("http://127.0.0.1:8000/todos.json")
             .then(function (response) {
                 let json = response.data.data;
                 this.state = {
-                	list: json,
-					finished: 0
+                	list: json
 				};
             })
             .catch(function (error) {
@@ -30,33 +29,23 @@ class TodoList extends Component {
 	}
 
 	updateFinished (todoItem) {
-		var sum = 0;
 		this.state.list.forEach( (item) => {
 			if (item.id === todoItem.id) {
 				item.status = todoItem.status;
 			}
-			if (item.status === 1) {
-				sum++;
-			}
 		});
-		this.setState({
-			finished: sum
-		});
+
 	}
 
 	updateTotal (todoItem) {
-		var obj = [], sum = 0;
+		var obj = [];
 		this.state.list.forEach((item) => {
 			if (item.id !== todoItem.id) {
 				obj.push(item);
-				if (item.status === 1 ) {
-					sum++;
-				}
 			}
 		});
 		this.setState({
-			list: obj,
-			finished: sum
+			list: obj
 		});
 	}
 
@@ -73,7 +62,7 @@ class TodoList extends Component {
 							key={index}
 						/>
 					)}
-					<li>{this.state.finished}已完成&nbsp;/&nbsp;{this.state.list.length}总数</li>
+					<li>{this.state.list.length}总数</li>
 				</ul>
 				<Dialog addNewTask={this.addTask.bind(this)} nums={this.state.list.length}/>
 			</div>
