@@ -8,12 +8,10 @@ class Todo(models.Model):
     create_time = models.DateTimeField(auto_now_add=True)
     #编辑时间
     update_time = models.DateTimeField(auto_now=True)
-    #Todo标题
-    title = models.CharField(max_length=50, default=timezone.now)
     #Todo内容
-    content = models.TextField()
+    title = models.CharField(max_length=50, default=timezone.now)
     #目标时间
-    target_time = models.DateTimeField()
+    target_time = models.CharField(max_length=50)
     #是否完成
     is_end = models.BooleanField(default=False)
 

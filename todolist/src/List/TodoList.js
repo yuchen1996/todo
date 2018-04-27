@@ -30,10 +30,27 @@ class TodoList extends Component {
 
 	addTask (newitem) {
 		var allTask = this.state.list;
-		allTask.push(newitem);
-		this.setState({
-			list: allTask
-		});
+
+		axios.post(
+			"/todos.json",
+			{
+				'title': newitem.title,
+				'target_time': newitem.target_time
+			}
+			)
+            .then(function (response) {
+            	allTask.push(newitem);
+                this.setState({
+
+					list: allTask
+				});
+
+            })
+            .catch(function (error) {
+                console.log(error);
+            })
+
+
 	}
 
 	updateFinished (todoItem) {
