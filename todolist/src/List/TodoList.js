@@ -3,30 +3,33 @@ import ListItem from './listItem';
 import Dialog from './dialog';
 import axios from 'axios';
 import './main.css';
-import ReactDOM from "react-dom";
-
+import ReactDOM from 'react-dom';
 
 
 class TodoList extends Component {
 
 	constructor (props) {
 		super(props);
-	}
 
-	componentDidMount() {
-        var json;
 	    axios.get("/todos.json")
-            .then(function (response) {
-                json = response.data.data;
-
+            .then((response) => {
+            	console.log(response)
+                let json = response.data.data;
+				this.setState({
+					list: json
+				});
             })
             .catch(function (error) {
                 console.log(error);
             })
-        this.setState({
-            list: json
-		});
+
+	}
+
+
+	componentDidMount() {
+        this.getJsonData();
     }
+
 
 	addTask (newitem) {
 		var allTask = this.state.list;
@@ -34,8 +37,8 @@ class TodoList extends Component {
 		axios.post(
 			"/todos.json",
 			{
-				'title': newitem.title,
-				'target_time': newitem.target_time
+				title: newitem.title,
+				target_time: newitem.target_time
 			}
 			)
             .then(function (response) {

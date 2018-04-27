@@ -15,7 +15,7 @@ class GroupSerializer(serializers.HyperlinkedModelSerializer):
 class TodoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Todo
-        fields = ('id', 'target_time', 'title', 'content', 'is_end', 'create_time', 'update_time')
+        fields = ('id', 'target_time', 'title', 'is_end', 'create_time', 'update_time')
     '''
     pk = serializers.IntegerField(read_only=True)
     create_time = serializers.DateTimeField()
