@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import ReactDOM from "react-dom";
-import TodoList from "./List";
+import TodoList from "./List/TodoList";
 
 
 class App extends Component {

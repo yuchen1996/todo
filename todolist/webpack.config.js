@@ -4,7 +4,7 @@ module.exports = {
     entry: path.resolve(__dirname, './src/App.js'),
     //入口文件并添加了热加载
     output: {
-        path: path.resolve(__dirname, './static/react'),
+        path: path.resolve(__dirname, './../static'),
         filename: 'todolist.js'  //输出文件
     },
     module: {
