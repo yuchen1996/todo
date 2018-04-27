@@ -4,10 +4,11 @@ import Dialog from './dialog';
 import axios from 'axios';
 import './main.css';
 
+
 class TodoList extends Component {
 	constructor (props) {
 		super(props);
-		axios.get("http://127.0.0.1:8000/todos.json")
+		axios.get("/todos.json")
             .then(function (response) {
                 let json = response.data.data;
                 this.state = {
