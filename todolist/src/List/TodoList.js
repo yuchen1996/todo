@@ -3,23 +3,30 @@ import ListItem from './listItem';
 import Dialog from './dialog';
 import axios from 'axios';
 import './main.css';
+import ReactDOM from "react-dom";
+
 
 
 class TodoList extends Component {
+
 	constructor (props) {
 		super(props);
-		axios.get("/todos.json")
+	}
+
+	componentDidMount() {
+        var json;
+	    axios.get("/todos.json")
             .then(function (response) {
-                let json = response.data.data;
-                this.state = {
-                	list: json
-				};
+                json = response.data.data;
+
             })
             .catch(function (error) {
                 console.log(error);
             })
-
-	}
+        this.setState({
+            list: json
+		});
+    }
 
 	addTask (newitem) {
 		var allTask = this.state.list;
@@ -72,3 +79,6 @@ class TodoList extends Component {
 }
 
 export default TodoList;
+
+
+ReactDOM.render((<TodoList />), document.getElementById('root'));

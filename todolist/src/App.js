@@ -3,6 +3,7 @@ import './App.css';
 import ReactDOM from "react-dom";
 import TodoList from "./List/TodoList";
 
+ReactDOM.render((<TodoList />), document.getElementById('root'));
 
 class App extends Component {
   render() {
