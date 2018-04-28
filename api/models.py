@@ -10,10 +10,8 @@ class Todo(models.Model):
     update_time = models.DateTimeField(auto_now=True)
     #Todo内容
     title = models.CharField(max_length=50, default=timezone.now)
-    #目标时间
-    target_time = models.CharField(max_length=50)
     #是否完成
     is_end = models.BooleanField(default=False)
 
     class Meta:
-        ordering = ('is_end','target_time')
+        ordering = ('is_end',)

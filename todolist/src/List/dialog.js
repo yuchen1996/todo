@@ -14,8 +14,8 @@ class Dialog extends Component {
 		if (value !== '') {
 			var obj = {
 				id: newid,
-				name: value,
-				status: 0
+				title: value,
+				is_end: false
 			};
 			this.refs.myText.value = '';
 			this.props.addNewTask(obj);
@@ -28,7 +28,7 @@ class Dialog extends Component {
 			<div className="dialog">
 				<div>
 					<h3>Task</h3>
-					<input type="text" ref="title" placeholder="你想做点什么"/>
+					<input type="text" ref="myText" className="add" placeholder="你想做点什么"/>
 				</div>
 				<div>
 					<input type="button" value="Save" onClick={this.handleClick}/>

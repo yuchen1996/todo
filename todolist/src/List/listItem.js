@@ -6,20 +6,31 @@ class ListItem extends Component {
 
 		this.handleFinished = this.handleFinished.bind(this);
 		this.handleDelete = this.handleDelete.bind(this);
+		this.handleChange = this.handleChange.bind(this);
 	} 
 
 	handleFinished () {
 		var status = this.props.item.is_end;
-
-		status = (status === 'False' ? 1 : 0);
-
+		status = !status;
+        console.log(status)
 		var obj = {
 			id: this.props.item.id,
-			name: this.props.item.target_time + ' ' +this.props.item.title,
-			status: status
+			title: this.props.item.title,
+			is_end: status
 		}
 		
-		this.props.finishedChange(obj);	
+		this.props.finishedChange(obj);
+	}
+
+	handleChange (e) {
+		var obj = {
+
+			id: this.props.item.id,
+			title: e.target.value,
+			is_end: this.props.item.is_end
+		}
+        console.log(obj);
+		this.props.finishedChange(obj);
 	}
 
 	handleDelete () {
@@ -40,8 +51,8 @@ class ListItem extends Component {
 			textDecoration: 'line-through'
 		}
 
-		var itemStyle = item.status === 0 ? unfinish : finish;
-		
+		var itemStyle = item.is_end === false ? unfinish : finish;
+		console.log(item)
 		return (
 			<li key={item.id} style={itemStyle}>
 				<span 
@@ -50,8 +61,11 @@ class ListItem extends Component {
 					className="check-btn"
 					style={{backgroundColor: item.status === 0 ? '#fff' : '#A1EAFB'}}
 				></span>
-				<span>{ item.name }</span>
-				<span onClick={this.handleDelete} className="delete-btn">删除</span>
+                <span><input type="text"  defaultValue={item.title} onChange={e => this.handleChange(e)} /></span>
+                <span className="delete-btn">
+                    <span onClick={this.handleDelete}>删除</span>
+                </span>
+
 			</li>
 		);
 	}
