@@ -27,7 +27,6 @@ urlpatterns = [
     url(r'^todos/(?P<pk>[0-9]+)/$', views.TodoDetail.as_view()),
     url(r'^$', react),
     url(r'^(?:.*)/?$', react),
-    #url(r'^api-auth/',include('rest_framework.urls', namespace='rest_framework'))
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)
